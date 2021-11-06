@@ -1,25 +1,39 @@
 class User:
     def __init__(self):
-        self.user_name = ""
-        self.name = ""
-        self.password = ""
-        self.age = 0
-        self.country = ""
-        self.email = ""
-        self.interests = set()
+        self.properties = dict()
+        self.properties["user_name"] = ""
+        self.properties["name"] = ""
+        self.properties["password"] = ""
+        self.properties["age"] = 0
+        self.properties["country"] = ""
+        self.properties["email"] = ""
+        self.properties["interests"] = set()
 
     def set_data_from_database(self, tuple):
         if (tuple == None):
             return None
-        self.user_name = tuple[0]
-        self.name = tuple[1]
-        self.password = tuple[2]
-        self.age = tuple[3]
-        self.country = tuple[4]
-        self.email = tuple[5]
-        self.interests = set(tuple[6].split(","))
+        self.properties["user_name"] = tuple[0]
+        self.properties["name"] = tuple[1]
+        self.properties["password"] = tuple[2]
+        self.properties["age"] = tuple[3]
+        self.properties["country"] = tuple[4]
+        self.properties["email"] = tuple[5]
+        self.properties["interests"] = set(tuple[6].split(","))
         return self
 
     def get_data_tuple(self):
-        return (self.user_name, self.name, self.password, self.age, self.country, self.email, ",".join(tuple(self.interests)),)
+        return (self.properties["user_name"], 
+                self.properties["name"], 
+                self.properties["password"], 
+                self.properties["age"], 
+                self.properties["country"], 
+                self.properties["email"], 
+                ",".join(tuple(self.properties["interests"])),)
+
+    def __str__(self) -> str:
+        t = ""
+        for k, v in self.properties.items():
+            t += "[{} : {}], ".format(k, v)
+
+        return t
         

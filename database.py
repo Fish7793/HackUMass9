@@ -7,7 +7,6 @@ from user import User
 
 class Database:
     def __init__(self):
-    
         try:
             self.db = mysql.connect( ##access db from inside the class
                 host = "localhost",
@@ -38,7 +37,7 @@ class Database:
                    "VALUES (%s, %s, %s, %s, %s, %s, %s)")
         values = user.get_data_tuple()
         
-        ret = self.retrieve_user_by_user_name(user.user_name)
+        ret = self.retrieve_user_by_user_name(user.properties["user_name"])
         if (ret is None):
             cursor = self.db.cursor()
             cursor.execute(query, values)
@@ -48,7 +47,7 @@ class Database:
 
     def delete_user(self, user):  
         query = ("DELETE FROM users WHERE user_name = %s")
-        values = (user.user_name,)
+        values = (user.properties["user_name"],)
         cursor = self.db.cursor()
         cursor.execute(query, values)
         cursor.close()
@@ -60,23 +59,39 @@ class Database:
         cursor.execute(query, values)
         result = cursor.fetchall()
         cursor.close()
-        return User().set_data_from_database(result[0] if len(result) > 0 else None)
+        user = User().set_data_from_database(result[0] if len(result) > 0 else None)
+        if (user is not None):
+            user.properties["password"] = ""
+        return user
 
-# database = Database()
-# bob = User()
-# bob.name = "Bob"
-# bob.user_name = "Hekrrmann"
-# bob.age = "21"
-# bob.email = "bob@hackumass.com"
-# bob.password = "12345"
-# bob.country = "US"
-# bob.interests.add("Hacking")
-# bob.interests.add("Coding")
-# database.add_user(bob)
-# print(database.retrieve_user_by_user_name("Hekrrmann"))
-# database.delete_user(bob)
-# print(database.retrieve_user_by_user_name("Hekrrmann"))
-# database.close()
+    def retrieve_users_by_query(self, q):
+        '''
+        q is a dict = {
+            min_age,
+            max_age,
+            interests,
+        }
+        '''
+
+        query = ()
+
+database = Database()
+bob = User()
+bob.properties = {
+    "name":"Bob",
+    "user_name":"Hekrrmann",
+    "age":21,
+    "email":"bob@hackumass.com",
+    "password":"12345",
+    "country":"US",
+    "interests":{ "Hacking", "Coding" },
+}
+
+database.add_user(bob)
+print(database.retrieve_user_by_user_name("Hekrrmann"))
+database.delete_user(bob)
+print(database.retrieve_user_by_user_name("Hekrrmann"))
+database.close()
 
 ##add to the database 
 
