@@ -1,0 +1,8 @@
+User values:
+
+Name
+Email
+Age
+Location
+Interests
+
