@@ -1,0 +1,8 @@
+/* used for the menu bar at the top of each page */
+.menu{
+    height: 200px;
+    width: 800px;
+    background: #401F5B;
+    /* color: #F3F1F5; */
+    margin:0;
+}
