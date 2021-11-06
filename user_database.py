@@ -40,6 +40,7 @@ class UserDatabase:
         ret = self.retrieve_user_by_user_name(user.properties["user_name"])
         if (ret is None):
             cursor = self.db.cursor()
+            cursor.execute("USE base")
             cursor.execute(query, values)
             cursor.close()
         else:
@@ -49,6 +50,7 @@ class UserDatabase:
         query = ("DELETE FROM users WHERE user_name = %s")
         values = (user.properties["user_name"],)
         cursor = self.db.cursor()
+        cursor.execute("USE base")
         cursor.execute(query, values)
         cursor.close()
 
@@ -56,6 +58,7 @@ class UserDatabase:
         query = ("SELECT * FROM users WHERE user_name = %s")
         values = (user_name,)
         cursor = self.db.cursor()
+        cursor.execute("USE base")
         cursor.execute(query, values)
         result = cursor.fetchall()
         cursor.close()
@@ -77,6 +80,7 @@ class UserDatabase:
 
         values = (q["min_age"], q["max_age"],)
         cursor = self.db.cursor()
+        cursor.execute("USE base")
         cursor.execute(query, values)
         results = cursor.fetchall()
         results = [User().set_data_from_database(item) for item in results]

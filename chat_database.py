@@ -3,13 +3,14 @@ import mysql.connector as mysql
 
 
 class ChatDatabase:
-    def __init__(self):
+    def __init__(self, user):
+        self.user = user
         try:
             self.db = mysql.connect( ##access db from inside the class
                 host = "localhost",
                 user = "root",
                 passwd = sys.argv[1] if len(sys.argv) > 1 else "",
-                database="chat"
+                database=user.properties["user_name"]
             )
         except Exception as ex:
             print(ex)
@@ -20,13 +21,31 @@ class ChatDatabase:
             )
 
             cursor = self.db.cursor()
-            cursor.execute("CREATE DATABASE chat")
-            cursor.execute("USE chat")
-            cursor.execute("CREATE TABLE chat (user1 VARCHAR(255), user2 VARCHAR(225), chat VARCHAR(8192))")
+            cursor.execute("CREATE DATABASE {}".format(user.properties["user_name"]))
+            cursor.execute("USE {}".format(user.properties["user_name"]))
             cursor.close()
     
     def close(self):
         self.db.close()
+
+    def try_start_chat(self, other_user):
+        cursor = self.db.cursor()
+        cursor.execute("USE {}".format(self.user.properties["user_name"]))
+        cursor.execute("CREATE TABLE {} (user_name VARCHAR(255), date DATE, chat VARCHAR(1024))".format(other_user.properties["user_name"]))
+        cursor.close()
+        pass
+
+    def try_add_to_chat(self, other_user):
+        cursor = self.db.cursor()
+        cursor.execute("USE {}".format(self.user.properties["user_name"]))
+
+        pass
+
+    def try_get_chat(self, other_user):
+        cursor = self.db.cursor()
+        cursor.execute("USE {}".format(self.user.properties["user_name"]))
+
+        pass
 
     # we need a way to try get chat matching user1 and user2 from the database
 
