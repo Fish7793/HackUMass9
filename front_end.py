@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 
 app = Flask(__name__ )
 
@@ -26,9 +26,9 @@ def friends():
 def settings():
     return render_template("userSettings.html")
 
-# @app.route("/templates/templates/userSettings.html/")
-# def settings():
-#     return render_template("userSettings.html")
+@app.route("/templates/templates/userSettings.html/")
+def templatesUserSettings():
+    return redirect(url_for("settings"))
 
 # @app.route("/profile:<name>/")
 # def chat():
