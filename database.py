@@ -73,7 +73,18 @@ class Database:
         }
         '''
 
-        query = ()
+        query = ("SELECT * FROM users WHERE q = %s")
+        values = (user.age, user.interests,)
+        cursor = self.db.cursor()
+        cursor.execute(query, values)
+        result[] = cursor.fetchall()
+
+        cursor.close()
+        userList[] = User().set_data_from_database(result[0] if len(result) > 0 else None)
+        if (user is not None):
+            user.properties["password"] = ""
+        return userList[]
+        
 
 database = Database()
 bob = User()
@@ -92,8 +103,3 @@ print(database.retrieve_user_by_user_name("Hekrrmann"))
 database.delete_user(bob)
 print(database.retrieve_user_by_user_name("Hekrrmann"))
 database.close()
-
-##add to the database 
-
-##database class 
-##
