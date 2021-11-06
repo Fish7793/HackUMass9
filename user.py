@@ -9,6 +9,10 @@ class User:
         self.properties["email"] = ""
         self.properties["interests"] = set()
 
+    def set_properties(self, p):
+        self.properties = p
+        return self
+
     def set_data_from_database(self, tuple):
         if (tuple == None):
             return None

@@ -73,22 +73,21 @@ class Database:
         }
         '''
 
-        query = ("SELECT * FROM users WHERE q = %s")
-        values = (user.age, user.interests,)
+        query = ("SELECT * FROM users WHERE age >= %s AND age <= %s")
+
+        values = (q["min_age"], q["max_age"],)
         cursor = self.db.cursor()
         cursor.execute(query, values)
-        result[] = cursor.fetchall()
-
+        results = cursor.fetchall()
+        results = [User().set_data_from_database(item) for item in results]
+        filtered = list(filter(lambda user: any(y in user.properties["interests"] for y in q["interests"]), results))
         cursor.close()
-        userList[] = User().set_data_from_database(result[0] if len(result) > 0 else None)
-        if (user is not None):
-            user.properties["password"] = ""
-        return userList[]
+    
+        return filtered
         
 
 database = Database()
-bob = User()
-bob.properties = {
+bob = User().set_properties({
     "name":"Bob",
     "user_name":"Hekrrmann",
     "age":21,
@@ -96,10 +95,28 @@ bob.properties = {
     "password":"12345",
     "country":"US",
     "interests":{ "Hacking", "Coding" },
-}
+})
+
+steve = User().set_properties({
+    "name":"Steve",
+    "user_name":"CS_GOD",
+    "age":17,
+    "email":"stev@edgelord.com",
+    "password":"54321",
+    "country":"US",
+    "interests":{ "Hacking", "Knitting" },
+})
 
 database.add_user(bob)
+database.add_user(steve)
 print(database.retrieve_user_by_user_name("Hekrrmann"))
+print(database.retrieve_user_by_user_name("CS_GOD"))
+print(database.retrieve_users_by_query({
+    "min_age":0,
+    "max_age":99,
+    "interests": {"Hacking"}
+}))
 database.delete_user(bob)
+database.delete_user(steve)
 print(database.retrieve_user_by_user_name("Hekrrmann"))
 database.close()
