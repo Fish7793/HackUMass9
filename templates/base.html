@@ -39,7 +39,7 @@
                 justify-content: space-between;
             }
 
-            ul {
+            .menu_unlist {
                 list-style-type: none;
                 margin: 0;
                 padding: 0px;
@@ -47,7 +47,7 @@
                 background-color: #401F5B;
             }
 
-            li, a {
+            .menu_list, .menu_link {
                 font-family: "Montserrat", sans-serif;
                 background: #401F5B;
                 font-weight: 500;
@@ -59,11 +59,11 @@
                 transition: all 0.3s ease 0s;
             }
 
-            li a:hover:not(.active) {
+            .menu_list a:hover:not(.active) {
                 color: #F0F6F0;
                 background-color: #401F5B;
             }
-            li a:hover:not(.active) {
+            .menu_list a:hover:not(.active) {
                 color: #F0F6F0;
                 background-color: #240c38;
             }
@@ -80,11 +80,11 @@
         
         <div align = "center" float="top">
             <header class = "menu">
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Find Friends</a></li>
-                        <li><a href="#">Chat</a></li>
-                        <li style="float:right"><a class="active" href="#">[username][pfp]</a></li>
+                    <ul class = "menu_unlist">
+                        <li class = "menu_list"><a class = "menu_link" href="#">Home</a></li>
+                        <li class = "menu_list"><a class = "menu_link" href="#">Find Friends</a></li>
+                        <li class = "menu_list"><a class = "menu_link" href="#">Chat</a></li>
+                        <li class = "menu_list" style="float:right"><a class="active menu_link" href="#">[username][pfp]</a></li>
                     </ul>
             </header>
         </div>
