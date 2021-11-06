@@ -10,9 +10,13 @@ def login():
 def home(name):
     return render_template("index.html", username = name, interests = "one, two, three,...", bio = "hello, this is a test hello, this is a test hello, this is a test hello, this is a test hello, this is a test hello, this is a test")
 
-@app.route("/find_friends/")
-def feed():
+@app.route("/find_matches/")
+def matches():
     return render_template("feed.html")
+
+@app.route("/find_friends/")
+def friends():
+    return render_template("friends.html")
 
 @app.route("/chat/")
 def chat():
