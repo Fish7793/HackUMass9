@@ -2,7 +2,21 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
-<div class = "Personal Info">
-    <p>welcome {{username}}</p>
+<style>
+    .personalInfo{
+        margin: 20px;
+    }
+</style>
+<div class = "personalInfo">
+    <!-- <p>welcome {{username}}</p> -->
+    
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{username}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{interests}}</h6>
+          <p class="card-text">{{bio}}</p>
+          <a href="#" class="card-link">Edit</a>
+        </div>
+      </div>
 </div>
 {% endblock %}
