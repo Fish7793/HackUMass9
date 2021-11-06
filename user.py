@@ -10,9 +10,12 @@ class User:
         self.properties["interests"] = set()
         self.properties["bio"] = ""
         self.properties["contact"] = set()
+        self.properties["min_age"] = 00
+        self.properties["max_age"] = 99
 
     def set_properties(self, p):
-        self.properties = p
+        for k, v in p.items():
+            self.properties[k] = v
         return self
 
     def set_data_from_database(self, tuple):
@@ -27,6 +30,8 @@ class User:
         self.properties["interests"] = set(tuple[6].split(","))
         self.properties["bio"] = tuple[7]
         self.properties["contact"] = set(tuple[8].split(","))
+        self.properties["min_age"] = tuple[9]
+        self.properties["max_age"] = tuple[10]
         return self
 
     def get_data_tuple(self):
@@ -38,7 +43,9 @@ class User:
                 self.properties["email"], 
                 ",".join(tuple(self.properties["interests"])),
                 self.properties["bio"],
-                ",".join(tuple(self.properties["contact"])),)
+                ",".join(tuple(self.properties["contact"])),
+                self.properties["min_age"],
+                self.properties["max_age"],)
 
     def __str__(self) -> str:
         t = ""

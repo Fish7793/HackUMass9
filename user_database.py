@@ -25,7 +25,7 @@ class UserDatabase:
             cursor = self.db.cursor()
             cursor.execute("CREATE DATABASE base")
             cursor.execute("USE base")
-            cursor.execute("CREATE TABLE users (user_name VARCHAR(255), name VARCHAR(225), password VARCHAR(255), age INT, country VARCHAR(255), email VARCHAR(500), interests VARCHAR(8192), bio VARCHAR(2048), contact VARCHAR(8192))")
+            cursor.execute("CREATE TABLE users (user_name VARCHAR(255), name VARCHAR(225), password VARCHAR(255), age INT, country VARCHAR(255), email VARCHAR(511), interests VARCHAR(4095), bio VARCHAR(2047), contact VARCHAR(1023), min_age INT, max_age INT)")
             cursor.close()
 
     def close(self):
@@ -33,8 +33,8 @@ class UserDatabase:
 
     def add_user(self, user):
         query = ("INSERT INTO users"
-                 "(user_name, name, password, age, country, email, interests, bio, contact)"
-                 "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)")
+                 "(user_name, name, password, age, country, email, interests, bio, contact, min_age, max_age)"
+                 "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)")
         values = user.get_data_tuple()
         
         ret = self.retrieve_user_by_user_name(user.properties["user_name"])
@@ -89,42 +89,51 @@ class UserDatabase:
     
         return filtered
         
+    def set_fields(self, user):
+        self.delete_user(user)
+        self.add_user(user)
+    
 
-database = UserDatabase()
-bob = User().set_properties({
-    "name":"Bob",
-    "user_name":"Hekrrmann",
-    "age":21,
-    "email":"bob@hackumass.com",
-    "password":"12345",
-    "country":"US",
-    "interests":{ "Hacking", "Coding" },
-    "bio":"howdy ;)",
-    "contact": { "hekk9982" }
-})
 
-steve = User().set_properties({
-    "name":"Steve",
-    "user_name":"CS_GOD",
-    "age":17,
-    "email":"stev@edgelord.com",
-    "password":"54321",
-    "country":"US",
-    "interests":{ "Hacking", "Knitting" },
-    "bio":"guh XC",
-    "contact": { "guh29492", "guh#29382" }
-})
+# database = UserDatabase()
+# bob = User().set_properties({
+#     "name":"Bob",
+#     "user_name":"Hekrrmann",
+#     "age":21,
+#     "email":"bob@hackumass.com",
+#     "password":"12345",
+#     "country":"US",
+#     "interests":{ "Hacking", "Coding" },
+#     "bio":"howdy ;)",
+#     "contact": { "hekk9982" },
+# })
 
-database.add_user(bob)
-database.add_user(steve)
-print(database.retrieve_user_by_user_name("Hekrrmann"))
-print(database.retrieve_user_by_user_name("CS_GOD"))
-print(database.retrieve_users_by_query({
-    "min_age":0,
-    "max_age":99,
-    "interests": {"Hacking"}
-}))
-database.delete_user(bob)
-database.delete_user(steve)
-print(database.retrieve_user_by_user_name("Hekrrmann"))
-database.close()
+# steve = User().set_properties({
+#     "name":"Steve",
+#     "user_name":"CS_GOD",
+#     "age":17,
+#     "email":"stev@edgelord.com",
+#     "password":"54321",
+#     "country":"US",
+#     "interests":{ "Hacking", "Knitting" },
+#     "bio":"guh XC",
+#     "contact": { "guh29492", "guh#29382" }
+# })
+
+# database.add_user(bob)
+# database.add_user(steve)
+# print(database.retrieve_user_by_user_name("Hekrrmann"))
+# bob.properties["age"] = 99
+# database.set_fields(bob)
+# print(database.retrieve_user_by_user_name("Hekrrmann"))
+
+# print(database.retrieve_user_by_user_name("CS_GOD"))
+# print(database.retrieve_users_by_query({
+#     "min_age":0,
+#     "max_age":99,
+#     "interests": {"Hacking"}
+# }))
+# database.delete_user(bob)
+# database.delete_user(steve)
+# print(database.retrieve_user_by_user_name("Hekrrmann"))
+# database.close()
