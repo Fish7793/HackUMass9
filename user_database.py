@@ -5,7 +5,7 @@ from user import User
 ## connecting to the database using 'connect()' method
 ## it takes 3 required parameters 'host', 'user', 'passwd'
 
-class Database:
+class UserDatabase:
     def __init__(self):
         try:
             self.db = mysql.connect( ##access db from inside the class
@@ -86,7 +86,7 @@ class Database:
         return filtered
         
 
-database = Database()
+database = UserDatabase()
 bob = User().set_properties({
     "name":"Bob",
     "user_name":"Hekrrmann",
