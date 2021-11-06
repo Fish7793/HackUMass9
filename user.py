@@ -1,4 +1,4 @@
-class user_info:
+class User:
     def __init__(self):
         self.user_name = ""
         self.name = ""
