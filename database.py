@@ -1,5 +1,6 @@
 import mysql.connector as mysql
 import sys
+from user import User
 
 ## connecting to the database using 'connect()' method
 ## it takes 3 required parameters 'host', 'user', 'passwd'
@@ -7,37 +8,75 @@ import sys
 class Database:
     def __init__(self):
     
-        self.db = mysql.connect( ##access db from inside the class
-            host = "localhost",
-            user = "root",
-            passwd = sys.argv[1] if len(sys.argv) > 1 else ""
-        )
+        try:
+            self.db = mysql.connect( ##access db from inside the class
+                host = "localhost",
+                user = "root",
+                passwd = sys.argv[1] if len(sys.argv) > 1 else "",
+                database="base"
+            )
+        except Exception as ex:
+            print(ex)
+            self.db = mysql.connect( ##access db from inside the class
+                host = "localhost",
+                user = "root",
+                passwd = sys.argv[1] if len(sys.argv) > 1 else "",
+            )
 
-        mycursor = mydb.cursor()
-
-        mycursor.execute("CREATE TABLE friendDatabase (user_name VARCHAR(255), name VARCHAR(225), password VARCHAR(255), age (int), country VARCHAR(255), email VARCHAR(500), interests VARCHAR(500))")
-
-        print(self.db)
+            cursor = self.db.cursor()
+            cursor.execute("CREATE DATABASE base")
+            cursor.execute("USE base")
+            cursor.execute("CREATE TABLE users (user_name VARCHAR(255), name VARCHAR(225), password VARCHAR(255), age INT, country VARCHAR(255), email VARCHAR(500), interests VARCHAR(500))")
+            cursor.close()
 
     def close(self):
         self.db.close()
 
-    def add_user():
-        add_user = ("INSERT INTO friendDatabase"
+    def add_user(self, user):
+        query = ("INSERT INTO users"
                    "(user_name, name, password, age, country, email, interests)"
-                   "VALUES (%s, %s, %s, %s, %s, %s, %s, %s)")
+                   "VALUES (%s, %s, %s, %s, %s, %s, %s)")
+        values = user.get_data_tuple()
+        
+        ret = self.retrieve_user_by_user_name(user.user_name)
+        if (len(ret) == 0):
+            cursor = self.db.cursor()
+            cursor.execute(query, values)
+            cursor.close()
+        else:
+            print("User already exists!")
 
+    def delete_user(self, user):  
+        query = ("DELETE FROM users WHERE user_name = %s")
+        values = (user.user_name,)
+        cursor = self.db.cursor()
+        cursor.execute(query, values)
+        cursor.close()
 
-    def delete_user():  
-        delete_user = ("DELETE FROM friendDatabase")
-
-    def retrieve_user():
-        retrieve_user = ("SELECT * FROM friendDatabase WHERE age LIKE '% %' ")
+    def retrieve_user_by_user_name(self, user_name):
+        query = ("SELECT * FROM users WHERE user_name = %s")
+        values = (user_name,)
+        cursor = self.db.cursor()
+        cursor.execute(query, values)
+        result = cursor.fetchall()
+        cursor.close()
+        return result
         
 
-database = Database()
-
-database.close()
+# database = Database()
+# bob = User()
+# bob.name = "Bob"
+# bob.user_name = "Hekrrmann"
+# bob.age = "21"
+# bob.email = "bob@hackumass.com"
+# bob.password = "12345"
+# bob.country = "US"
+# bob.interests.add("Hacking")
+# database.add_user(bob)
+# print(database.retrieve_user_by_user_name("Hekrrmann"))
+# database.delete_user(bob)
+# print(database.retrieve_user_by_user_name("Hekrrmann"))
+# database.close()
 
 ##add to the database 
 
