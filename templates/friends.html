@@ -10,69 +10,43 @@
         padding-right: 30px;
         padding-bottom: 30px;
     }
+
+    .friend-pfp{
+        width: 50%;
+    }
 </style>
 
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
     <div class="col">
       <div class="card h-100">
-        <img src="..." class="card-img-top" alt="...">
+        <img src="https://www.unmc.edu/cihc/_images/faculty/default.jpg" class="card-img-top friend-pfp mx-auto" alt="profile picutre">
         <div class="card-body">
           <h5 class="card-title">Card title</h5>
           <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
         </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
       </div>
     </div>
     <div class="col">
       <div class="card h-100">
-        <img src="..." class="card-img-top" alt="...">
+        <img src="https://www.unmc.edu/cihc/_images/faculty/default.jpg" class="card-img-top friend-pfp mx-auto" alt="...">
         <div class="card-body">
           <h5 class="card-title">Card title</h5>
           <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
         </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
       </div>
     </div>
     <div class="col">
       <div class="card h-100">
-        <img src="..." class="card-img-top" alt="...">
+        <img src="https://www.unmc.edu/cihc/_images/faculty/default.jpg" class="card-img-top friend-pfp mx-auto" alt="...">
         <div class="card-body">
           <h5 class="card-title">Card title</h5>
           <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
         </div>
       </div>
     </div>
   </div>
 
-  
 
-
-{% for people in range(5) %}
-<div class="card mb-3 mx-auto" style="max-width: 540px;">
-    <div class="row g-0">
-      <div class="col-md-4">
-        <img src="https://www.unmc.edu/cihc/_images/faculty/default.jpg" class="img-fluid rounded-start" alt="...">
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-            <br>
-          <h5 class="card-title">name</h5>
-          <p class="card-text">Their interests, Their interests, Their interests, Their interests, Their interests</p>
-        </div>
-      </div>
-      <p class="card-text match-bio"> this is a bio this is a bio this is a bio this is a bio this is a bio this is a bio this is a bio this is a bio this is a bio</p>
-    </div> 
-    
-    </div>
-    <br><br><br><br>
-{% endfor %}
 
 {% endblock %}
