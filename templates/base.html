@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>{% block title%}{% endblock %}</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+            * {
+                font-family: "Montserrat", sans-serif;
+                font-weight: 500;
+                font-size:16px;
+                
+            }
+
+            .menu{
+                /* height: 200px;
+                width: 800px; */
+                background: #401F5B;
+                color: #F3F1F5;
+                margin: 0;
+                padding:30px 10%;
+                display:flex;
+                align-items:center;
+                justify-content: space-between;
+            }
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0px;
+                overflow: hidden;
+                background-color: #401F5B;
+            }
+
+            li, a {
+                float: left;
+                color: #F3F1F5;
+                text-decoration: none;
+                padding: 2px;
+            }
+
+            li a:hover:not(.active) {
+                color: #F3F1F5;
+                background-color: #401F5B;
+            }
+            li a:hover:not(.active) {
+                color: #F3F1F5;
+                background-color: #33154b;
+            }
+        </style>
+        <!-- <link href="style.css" rel="stylesheet" type="text/css"> -->
+    </head>
+    <body>
+
+        <!-- menu nav bar -->
+        <div align = "center" float="top">
+            <div class = "menu">
+                <nav style="float:left">
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#news">Find Friends</a></li>
+                        <li><a href="#contact">[USER NAME]</a></li>
+                        <li style="float:right"><a class="active" href="#about">About</a></li>
+                    </ul>
+                </nav>
+                
+            </div>
+        </div>
+
+
+        <!-- the content from each individual html file will be linked here -->
+        {% block content %}{% endblock %}
+        <p>This is the home page</p>
+        
+    </body>
+</html>
