@@ -4,5 +4,25 @@
 {% block content %}
 <!-- write the html code for the page here -->
 
+<nav id="user_info" class="navbar navbar-light $purple-800 flex-column align-items-stretch p-3">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <nav class="nav nav-pills flex-column">
+      <a class="nav-link" href="#bio">Bio</a>
+      
+      </nav>
+      <a class="nav-link" href="#interests">Interests</a>
+      </nav>
+    </nav>
+  </nav>
+  
+  <div data-bs-spy="scroll" data-bs-target="#user_info" data-bs-offset="0" tabindex="0">
+    <h4 id="bio">Bio</h4>
+    <p>...</p>
+    
+    <h4 id="interests">Interests</h4>
+    <p>...</p>
+   
+  </div>
+
 
 {% endblock %}
