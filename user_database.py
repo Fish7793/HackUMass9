@@ -25,7 +25,7 @@ class UserDatabase:
             cursor = self.db.cursor()
             cursor.execute("CREATE DATABASE base")
             cursor.execute("USE base")
-            cursor.execute("CREATE TABLE users (user_name VARCHAR(255), name VARCHAR(225), password VARCHAR(255), age INT, country VARCHAR(255), email VARCHAR(500), interests VARCHAR(500))")
+            cursor.execute("CREATE TABLE users (user_name VARCHAR(255), name VARCHAR(225), password VARCHAR(255), age INT, country VARCHAR(255), email VARCHAR(500), interests VARCHAR(8192), bio VARCHAR(2048), contact VARCHAR(8192))")
             cursor.close()
 
     def close(self):
@@ -33,8 +33,8 @@ class UserDatabase:
 
     def add_user(self, user):
         query = ("INSERT INTO users"
-                   "(user_name, name, password, age, country, email, interests)"
-                   "VALUES (%s, %s, %s, %s, %s, %s, %s)")
+                 "(user_name, name, password, age, country, email, interests, bio, contact)"
+                 "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)")
         values = user.get_data_tuple()
         
         ret = self.retrieve_user_by_user_name(user.properties["user_name"])
@@ -99,6 +99,8 @@ bob = User().set_properties({
     "password":"12345",
     "country":"US",
     "interests":{ "Hacking", "Coding" },
+    "bio":"howdy ;)",
+    "contact": { "hekk9982" }
 })
 
 steve = User().set_properties({
@@ -109,6 +111,8 @@ steve = User().set_properties({
     "password":"54321",
     "country":"US",
     "interests":{ "Hacking", "Knitting" },
+    "bio":"guh XC",
+    "contact": { "guh29492", "guh#29382" }
 })
 
 database.add_user(bob)

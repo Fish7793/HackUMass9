@@ -38,7 +38,7 @@ class User:
                 self.properties["email"], 
                 ",".join(tuple(self.properties["interests"])),
                 self.properties["bio"],
-                ",".join(tuple(self.properties["contact"])))
+                ",".join(tuple(self.properties["contact"])),)
 
     def __str__(self) -> str:
         t = ""
