@@ -10,6 +10,18 @@ def login():
 def home(name):
     return render_template("index.html", username = name, interests = "one, two, three,...", bio = "hello, this is a test hello, this is a test hello, this is a test hello, this is a test hello, this is a test hello, this is a test")
 
+@app.route("/find_friends/")
+def feed():
+    return render_template("index.html")
+
+@app.route("/chat/")
+def chat():
+    return render_template("index.html")
+
+# @app.route("/profile:<name>/")
+# def chat():
+#     return render_template("index.html")
+
 
 
 if __name__ == "__main__":
