@@ -18,6 +18,10 @@ def feed():
 def chat():
     return render_template("chat.html")
 
+@app.route("/settings/")
+def chat():
+    return render_template("userSettings.html")
+
 # @app.route("/profile:<name>/")
 # def chat():
 #     return render_template("index.html")
