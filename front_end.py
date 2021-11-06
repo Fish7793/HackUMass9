@@ -19,7 +19,7 @@ def chat():
     return render_template("chat.html")
 
 @app.route("/settings/")
-def chat():
+def settings():
     return render_template("userSettings.html")
 
 # @app.route("/profile:<name>/")
