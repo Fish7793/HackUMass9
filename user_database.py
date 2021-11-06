@@ -7,6 +7,7 @@ from user import User
 
 class UserDatabase:
     def __init__(self):
+        cursor = self.db.cursor()
         try:
             self.db = mysql.connect( ##access db from inside the class
                 host = "localhost",
@@ -21,12 +22,13 @@ class UserDatabase:
                 user = "root",
                 passwd = sys.argv[1] if len(sys.argv) > 1 else "",
             )
-
-            cursor = self.db.cursor()
             cursor.execute("CREATE DATABASE base")
             cursor.execute("USE base")
+        
             cursor.execute("CREATE TABLE users (user_name VARCHAR(255), name VARCHAR(225), password VARCHAR(255), age INT, country VARCHAR(255), email VARCHAR(511), interests VARCHAR(4095), bio VARCHAR(2047), contact VARCHAR(1023), min_age INT, max_age INT)")
-            cursor.close()
+            cursor.execute("CREATE TABLE frens (user_name VARCHAR(255), friends VARCHAR(8191))")
+        
+        cursor.close()
 
     def close(self):
         self.db.close()
@@ -37,7 +39,7 @@ class UserDatabase:
                  "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)")
         values = user.get_data_tuple()
         
-        ret = self.retrieve_user_by_user_name(user.properties["user_name"])
+        ret = self.get_user_by_user_name(user.properties["user_name"])
         if (ret is None):
             cursor = self.db.cursor()
             cursor.execute("USE base")
@@ -54,7 +56,7 @@ class UserDatabase:
         cursor.execute(query, values)
         cursor.close()
 
-    def retrieve_user_by_user_name(self, user_name):
+    def get_user_by_user_name(self, user_name):
         query = ("SELECT * FROM users WHERE user_name = %s")
         values = (user_name,)
         cursor = self.db.cursor()
@@ -67,7 +69,7 @@ class UserDatabase:
             user.properties["password"] = ""
         return user
 
-    def retrieve_users_by_query(self, q):
+    def get_users_by_query(self, q):
         '''
         q is a dict = {
             min_age,
@@ -93,6 +95,18 @@ class UserDatabase:
         self.delete_user(user)
         self.add_user(user)
     
+    def check_user_pass(self, user_name, password):
+        query = ("SELECT * FROM users WHERE user_name = %s AND password = %s")
+        values = (user_name, password,)
+        cursor = self.db.cursor()
+        cursor.execute("USE base")
+        cursor.execute(query, values)
+        result = cursor.fetchall()
+        cursor.close()
+        return User().set_data_from_database(result[0] if len(result) > 0 else None)
+
+    
+
 
 
 # database = UserDatabase()
