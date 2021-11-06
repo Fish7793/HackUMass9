@@ -26,6 +26,8 @@
                 
             }
 
+            
+
             /* Nav Bar stuff */
             .menu{
                 background: #401F5B;
@@ -64,6 +66,10 @@
             li a:hover:not(.active) {
                 color: #F0F6F0;
                 background-color: #240c38;
+            }
+
+            .allContent{
+                margin: 50px;
             }
         </style>
         <!-- <link href="style.css" rel="stylesheet" type="text/css"> -->
@@ -110,7 +116,10 @@
 
 
         <!-- the content from each individual html file will be linked here -->
-        {% block content %}{% endblock %}
+        <div class = "allContent">
+            {% block content %}{% endblock %}
+        </div>
+        
         
 
 
