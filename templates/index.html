@@ -2,54 +2,132 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
-<!-- <style>
-    .personalInfo{
-        margin: 20px;
-    }
-</style>> -->
 
-<div class = "personalInfo">
-    <!-- <p>welcome {{username}}</p> -->
-    
-    <div class="card" style="width: 18rem;">
+<style>
+    .scroll {
+    max-height: 100px;
+    overflow-y: auto;
+}
+</style>
+
+<div class="row">
+    <div class="col-sm-6">
+      <div class="card">
         <div class="card-body">
           <h5 class="card-title">{{username}}</h5>
           <h6 class="card-subtitle mb-2 text-muted">{{interests}}</h6>
           <p class="card-text">{{bio}}</p>
-          <a href="#" class="card-link">Edit</a>
+          <a class="btn btn-primary" href="#" role="button">Edit</a>
         </div>
       </div>
-</div>
+    </div>
+  </div>
+
+<br>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <h4 class="card-header">Friends</h4>
+        <div class="card-body">
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+          <div class="list-group">
+            {% for people in range(5)%}
+                <a href="#" class="list-group-item list-group-item-action ">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">[FRIEND'S NAME]</h5>
+                    <!-- <small>3 days ago</small> -->
+                </div>
+                <p class="mb-1"></p>
+                <small>Shared interests.</small>
+                <p class="card-text">a little bit of their bio...</p>
+                </a>
+            {% endfor %}
+          </div>
 
 
-<!-- is going to get an array of the user's matches -->
-
-<h3>Friends</h3>
-<div class="list-group">
-    <a href="#" class="list-group-item list-group-item-action " aria-current="true">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">List group item heading</h5>
-        <small>3 days ago</small>
+          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+        </div>
       </div>
-      <p class="mb-1">Some placeholder content in a paragraph.</p>
-      <small>And some small print.</small>
-    </a>
-    </a>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <h4 class="card-header">Matches</h4>
+        <div class="card-body">
+            <!-- <h5 class="card-title">Special title treatment</h5> -->
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+
+            <div class="list-group">
+                {% for people in range(5)%}
+                    <a href="#" class="list-group-item list-group-item-action ">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">[MATCH'S NAME]</h5>
+                        <!-- <small>3 days ago</small> -->
+                    </div>
+                    <p class="mb-1"></p>
+                    <small>Shared interests.</small>
+                    <p class="card-text">a little bit of their bio...</p>
+                    </a>
+                {% endfor %}
+              </div>
+
+
+            <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+        </div>
+      </div>
+    </div>
   </div>
 
 
-
-  <!-- is going to get an array of the user's friends -->
-
-<h3>Matches</h3>
-<div class="list-group">
-    <a href="#" class="list-group-item list-group-item-action ">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">[FRIEND'S NAME]</h5>
-        <!-- <small>3 days ago</small> -->
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card">...</div>
+    </div>
+    <div class="col-sm-4 scroll">
+      <div class="card">...
+          
       </div>
-      <p class="mb-1">Some placeholder content in a paragraph.</p>
-      <small>And some small print.</small>
-    </a>
+    </div>
+    <div class="col-sm-4">
+      <div class="card">...</div>
+    </div>
   </div>
+
+
+  <nav id="navbar-example3" class="navbar navbar-light bg-light flex-column align-items-stretch p-3">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <nav class="nav nav-pills flex-column">
+      <a class="nav-link" href="#item-1">Item 1</a>
+      <nav class="nav nav-pills flex-column">
+        <a class="nav-link ms-3 my-1" href="#item-1-1">Item 1-1</a>
+        <a class="nav-link ms-3 my-1" href="#item-1-2">Item 1-2</a>
+      </nav>
+      <a class="nav-link" href="#item-2">Item 2</a>
+      <a class="nav-link" href="#item-3">Item 3</a>
+      <nav class="nav nav-pills flex-column">
+        <a class="nav-link ms-3 my-1" href="#item-3-1">Item 3-1</a>
+        <a class="nav-link ms-3 my-1" href="#item-3-2">Item 3-2</a>
+      </nav>
+    </nav>
+  </nav>
+  
+  <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0">
+    <h4 id="item-1">Item 1</h4>
+    <p>...</p>
+    <h5 id="item-1-1">Item 1-1</h5>
+    <p>...</p>
+    <h5 id="item-1-2">Item 1-2</h5>
+    <p>...</p>
+    <h4 id="item-2">Item 2</h4>
+    <p>...</p>
+    <h4 id="item-3">Item 3</h4>
+    <p>...</p>
+    <h5 id="item-3-1">Item 3-1</h5>
+    <p>...</p>
+    <h5 id="item-3-2">Item 3-2</h5>
+    <p>...</p>
+  </div>
+
 {% endblock %}
