@@ -39,7 +39,7 @@ class Database:
         values = user.get_data_tuple()
         
         ret = self.retrieve_user_by_user_name(user.user_name)
-        if (len(ret) == 0):
+        if (ret is None):
             cursor = self.db.cursor()
             cursor.execute(query, values)
             cursor.close()
@@ -60,8 +60,7 @@ class Database:
         cursor.execute(query, values)
         result = cursor.fetchall()
         cursor.close()
-        return result
-        
+        return User().set_data_from_database(result[0] if len(result) > 0 else None)
 
 # database = Database()
 # bob = User()
@@ -72,6 +71,7 @@ class Database:
 # bob.password = "12345"
 # bob.country = "US"
 # bob.interests.add("Hacking")
+# bob.interests.add("Coding")
 # database.add_user(bob)
 # print(database.retrieve_user_by_user_name("Hekrrmann"))
 # database.delete_user(bob)
