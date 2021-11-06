@@ -2,7 +2,7 @@ from flask import Flask, render_template
 
 app = Flask(__name__ )
 
-@app.route("/login/")
+@app.route("/templates/login.html/")
 def login():
     return ""
 
@@ -10,21 +10,25 @@ def login():
 def home(name):
     return render_template("index.html", username = name, interests = "one, two, three,...", bio = "hello, this is a test hello, this is a test hello, this is a test hello, this is a test hello, this is a test hello, this is a test")
 
-@app.route("/find_matches/")
+@app.route("/templates/feed.html/")
 def matches():
     return render_template("feed.html")
 
-@app.route("/find_friends/")
+@app.route("/templates/friends.html/")
 def friends():
     return render_template("friends.html")
 
-@app.route("/chat/")
-def chat():
-    return render_template("chat.html")
+# @app.route("/chat/")
+# def chat():
+#     return render_template("chat.html")
 
-@app.route("/settings/")
+@app.route("/templates/userSettings.html/")
 def settings():
     return render_template("userSettings.html")
+
+# @app.route("/templates/templates/userSettings.html/")
+# def settings():
+#     return render_template("userSettings.html")
 
 # @app.route("/profile:<name>/")
 # def chat():
