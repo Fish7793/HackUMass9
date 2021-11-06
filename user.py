@@ -6,5 +6,5 @@ class user_info:
         self.age = 0
         self.country = ""
         self.email = ""
-        self.intrests = set()
+        self.interests = set()
         
