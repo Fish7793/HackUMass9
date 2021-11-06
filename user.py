@@ -8,6 +8,8 @@ class User:
         self.properties["country"] = ""
         self.properties["email"] = ""
         self.properties["interests"] = set()
+        self.properties["bio"] = ""
+        self.properties["contact"] = set()
 
     def set_properties(self, p):
         self.properties = p
@@ -23,6 +25,8 @@ class User:
         self.properties["country"] = tuple[4]
         self.properties["email"] = tuple[5]
         self.properties["interests"] = set(tuple[6].split(","))
+        self.properties["bio"] = tuple[7]
+        self.properties["contact"] = set(tuple[8].split(","))
         return self
 
     def get_data_tuple(self):
@@ -32,7 +36,9 @@ class User:
                 self.properties["age"], 
                 self.properties["country"], 
                 self.properties["email"], 
-                ",".join(tuple(self.properties["interests"])),)
+                ",".join(tuple(self.properties["interests"])),
+                self.properties["bio"],
+                ",".join(tuple(self.properties["contact"])))
 
     def __str__(self) -> str:
         t = ""
