@@ -59,13 +59,17 @@
                 transition: all 0.3s ease 0s;
             }
 
-            .menu_list a:hover:not(.active) {
+            .menu_list .menu_link:hover:not(.active) {
                 color: #F0F6F0;
                 background-color: #401F5B;
             }
-            .menu_list a:hover:not(.active) {
+            .menu_list .menu_link:hover:not(.active) {
                 color: #F0F6F0;
                 background-color: #240c38;
+            }
+
+            .btn-primary{
+                background-color: #401F5B;
             }
 
             .allContent{
@@ -80,12 +84,12 @@
         
         <div align = "center" float="top">
             <header class = "menu">
-                    <ul class = "menu_unlist">
-                        <li class = "menu_list"><a class = "menu_link" href="#">Home</a></li>
-                        <li class = "menu_list"><a class = "menu_link" href="#">Find Friends</a></li>
-                        <li class = "menu_list"><a class = "menu_link" href="#">Chat</a></li>
-                        <li class = "menu_list" style="float:right"><a class="active menu_link" href="#">[username][pfp]</a></li>
-                    </ul>
+                <ul class = "menu_unlist">
+                    <li class = "menu_list"><a class = "menu_link" href="#">Home</a></li>
+                    <li class = "menu_list"><a class = "menu_link" href="#">Find Friends</a></li>
+                    <li class = "menu_list"><a class = "menu_link" href="#">Chat</a></li>
+                    <li class = "menu_list" style="float:right"><a class="active menu_link" href="#">[username][pfp]</a></li>
+                </ul>
             </header>
         </div>
 
