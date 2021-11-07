@@ -1,3 +1,5 @@
+import json
+
 class User:
     def __init__(self):
         self.properties = dict()
@@ -57,4 +59,7 @@ class User:
 
     def score(self, other):
         return len(list(filter(lambda x: x in self.properties["interests"], other.properties["interests"])))
-        
+
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)
+    

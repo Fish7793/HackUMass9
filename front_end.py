@@ -1,4 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request, session
+from user_database import UserDatabase
+from user import User
 
 app = Flask(__name__)
 app.secret_key = "1234"
@@ -8,6 +10,10 @@ def login():
     if request.method == "POST":
         user = request.form["username"]
         session["user"] = user
+        # db = UserDatabase()
+        # user_obj = db.get_user_by_user_name(user)
+        # session["user_obj"] = user_obj
+        # db.close()
         # passw = request.form["password"]
         # session["pass"] = passw
         return redirect(url_for("home"))
@@ -45,6 +51,11 @@ def interests():
         userInterests = request.form.getlist("interests")
         session["userIterests"] = userInterests
 
+        # db = UserDatabase()
+        # user_obj = session["user_obj"]
+        # session["user_obj"] = user_obj
+        # db.close()
+
         return redirect(url_for("home"))
     else:
         return render_template("interests.html")
@@ -55,6 +66,13 @@ def signup():
     if request.method == "POST":
         user = request.form["username"]
         session["user"] = user
+        # db = UserDatabase()
+        # u = User().set_properties({
+        #     "user_name":user,
+        # })
+        # user_obj = db.add_user(u).get_user_by_user_name(user)
+        # session["user_obj"] = user_obj
+        # db.close()
         # passw = request.form["password"]
         # session["pass"] = passw
         return redirect(url_for("interests"))
