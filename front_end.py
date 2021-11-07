@@ -23,6 +23,8 @@ def templatesLogin():
 @app.route("/templates/interests.html", methods = ["POST", "GET"])
 def interests():
     if request.method == "POST":
+        bio = request.form["biography"]
+        session["bio"] = bio
         # user = request.form["username"]
         # session["user"] = user
         # passw = request.form["password"]

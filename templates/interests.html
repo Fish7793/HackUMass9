@@ -25,37 +25,38 @@
         <div class="card" style="width: 45rem;">
             <div class="card-body">
                 <h5 class="card-title">Welcome {{session['user']}}</h5>
+                <br>
                 <h6 class="card-subtitle mb-2 text-muted">Answer the following questions to let us know more about you!<br>This information will be used to help match you with people with similar interests.</h6>
                 <br>
                 <form action = "#" method = "post">
                     <div class="form-check">
                         <p>Please enter your current age range:</p>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <input class="form-check-input" type="radio" name="ageRange" id="child">
                             <label class="form-check-label" for="flexRadioDefault1">
                             under 18
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <input class="form-check-input" type="radio" name="ageRange" id="youngAdult">
                             <label class="form-check-label" for="flexRadioDefault1">
                               18-25
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <input class="form-check-input" type="radio" name="ageRange" id="adult1">
                             <label class="form-check-label" for="flexRadioDefault1">
                               26-35
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <input class="form-check-input" type="radio" name="ageRange" id="adult2">
                             <label class="form-check-label" for="flexRadioDefault1">
                               36-45
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <input class="form-check-input" type="radio" name="ageRange" id="adult3">
                             <label class="form-check-label" for="flexRadioDefault1">
                               46+
                             </label>
@@ -70,43 +71,43 @@
                         <p>Select Your Interests:</p>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <input class="form-check-input" type="checkbox" value="" id="sports">
                             <label class="form-check-label" for="flexCheckDefault">
                             Sports
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <input class="form-check-input" type="checkbox" value="" id="art">
                             <label class="form-check-label" for="flexCheckDefault">
                             Art
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <input class="form-check-input" type="checkbox" value="" id="music">
                             <label class="form-check-label" for="flexCheckDefault">
                             Music
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <input class="form-check-input" type="checkbox" value="" id="dance">
                             <label class="form-check-label" for="flexCheckDefault">
                             Dance
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <input class="form-check-input" type="checkbox" value="" id="technology">
                             <label class="form-check-label" for="flexCheckDefault">
                             Technology
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <input class="form-check-input" type="checkbox" value="" id="cooking">
                             <label class="form-check-label" for="flexCheckDefault">
                             Cooking
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <input class="form-check-input" type="checkbox" value="" id="travel">
                             <label class="form-check-label" for="flexCheckDefault">
                             Travel
                             </label>
@@ -119,60 +120,45 @@
 
                     <div class="form-check">
                         <p>Write a bio so that people can get to know you:</p>
-                            <div class="mb-3">
-                                <textarea columns="6" class="form-control" id="exampleFormControlTextarea1" rows="3" maxlength="8000"></textarea>
-                              </div>
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="Leave a comment here" name="biography" id="biography" maxlength = "8000" style="height: 100px"></textarea>
+                            <label for="floatingTextarea2">Biography</label>
+                          </div>
                         </div>
                     
 
-                    <br>
+                    <br><br>
 
                     <div class="form-check">
-                        <p>How would you prefer to be contacted?</p>
+                        <p>Enter the usernames of ways you would like to be contacted</p>
 
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                            SnapChat
-                            </label>
+                        <div class="form-floating">
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">SnapChat</label>
+                                <input type="text" id="snapchatUsername" name="snapchatUsername"  value=""><br>
+                            </div>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                            Instagram
-                            </label>
+
+
+
+                        <div class="form-floating">
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Instagram</label>
+                                <input type="text" id="instagramUsername" name="instagramUsername"  value=""><br>
+                            </div>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                            Discord
-                            </label>
+
+
+
+                        <div class="form-floating">
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Discord</label>
+                                <input type="text" id="discordUsername" name="discordUsername"  value=""><br>
+                            </div>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                            What's App
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                            Twitter
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                            Messenger
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                            Phone
-                            </label>
-                        </div>
+
                     </div>
+
 
                     <br><br>
                     <p><input type="submit" value="submit" class="btn btn-primary position-absolute bottom-0 start-50 translate-middle-x"/></p>
