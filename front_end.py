@@ -18,6 +18,10 @@ def login():
 def templatesLogin():
     return redirect(url_for("login"))
 
+@app.route("/")
+def defaultRedirect():
+    return redirect(url_for("login"))
+
 
 
 @app.route("/templates/interests.html", methods = ["POST", "GET"])
