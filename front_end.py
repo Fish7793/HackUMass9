@@ -18,6 +18,10 @@ def login():
 def templatesLogin():
     return redirect(url_for("login"))
 
+@app.route("/")
+def defaultRedirect():
+    return redirect(url_for("login"))
+
 
 
 @app.route("/templates/interests.html", methods = ["POST", "GET"])
@@ -25,10 +29,22 @@ def interests():
     if request.method == "POST":
         bio = request.form["biography"]
         session["bio"] = bio
-        # user = request.form["username"]
-        # session["user"] = user
-        # passw = request.form["password"]
-        # session["pass"] = passw
+
+
+        snapchatUser = request.form["snapchatUsername"]
+        session["snapchatUser"] = snapchatUser
+
+        instaUser = request.form["instagramUsername"]
+        session["instaUser"] = instaUser
+
+
+        discordUser = request.form["discordUsername"]
+        session["discordUser"] = discordUser
+
+
+        userInterests = request.form.getlist("interests")
+        session["userIterests"] = userInterests
+
         return redirect(url_for("home"))
     else:
         return render_template("interests.html")
