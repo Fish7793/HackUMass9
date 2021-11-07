@@ -1,18 +1,44 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request
 
 app = Flask(__name__ )
+user = ""
 
-@app.route("/")
+@app.route("/login.html/", methods = ["POST", "GET"])
 def login():
-    return render_template("login.html")
+    if request.method == "POST":
+        user = request.form["username"]
+    #     # passw = request.form["password"]
+        return redirect(url_for("home", usr = user))
+    else:
+        return render_template("login.html")
+
+@app.route("/templates/templates/login.html/")
+def templatesLogin():
+    return redirect(url_for("login"))
 
 
 
+@app.route("/templates/signup.html/")
+def signup():
+    return render_template("signup.html")
 
-@app.route("/<name>/")
-def home(name):
-    return render_template("index.html", username = name, interests = "one, two, three,...", bio = "hello, this is a test hello, this is a test hello, this is a test hello, this is a test hello, this is a test hello, this is a test")
+@app.route("/templates/templates/signup.html/")
+def templatesSignup():
+    return redirect(url_for("signup"))
 
+
+@app.route("/templates/index.html/<usr>")
+def home(usr):
+    return render_template("index.html", username = usr)
+    # , interests = "one, two, three,...", bio = "hello, this is a test hello, this is a test hello, this is a test hello, this is a test hello, this is a test hello, this is a test"
+
+@app.route("/templates/templates/index.html/")
+def templatesHome():
+    return redirect(url_for("home", usr = user))
+
+@app.route("/templates/index.html/")
+def templatesHome2():
+    return render_template("index.html", username = user)
 
 
 
