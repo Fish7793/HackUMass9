@@ -20,6 +20,10 @@ class User:
             self.properties[k] = v
         return self
 
+# fuasdfjasdf
+
+
+
     def set_from_database(self, tuple):
         if (tuple == None):
             return None

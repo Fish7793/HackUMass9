@@ -28,7 +28,7 @@ def templatesLogin():
 def defaultRedirect():
     return redirect(url_for("login"))
 
-
+# fheijurijfhskdjfsdf
 
 @app.route("/templates/interests.html", methods = ["POST", "GET"])
 def interests():
