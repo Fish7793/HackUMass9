@@ -48,6 +48,8 @@ class UserDatabase:
         else:
             print("User already exists!")
 
+        return self
+
     def delete_user(self, user):  
         query = ("DELETE FROM users WHERE user_name = %s")
         values = (user.properties["user_name"],)
@@ -55,6 +57,8 @@ class UserDatabase:
         cursor.execute("USE base")
         cursor.execute(query, values)
         cursor.close()
+
+        return self
 
     def get_user_by_user_name(self, user_name):
         query = ("SELECT * FROM users WHERE user_name = %s")
@@ -94,6 +98,7 @@ class UserDatabase:
     def set_fields(self, user):
         self.delete_user(user)
         self.add_user(user)
+        return self
     
     def check_user_pass(self, user_name, password):
         query = ("SELECT * FROM users WHERE user_name = %s AND password = %s")
