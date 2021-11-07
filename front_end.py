@@ -1,14 +1,16 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, session
 
-app = Flask(__name__ )
-user = ""
+app = Flask(__name__)
+app.secret_key = "1234"
 
 @app.route("/login.html/", methods = ["POST", "GET"])
 def login():
     if request.method == "POST":
         user = request.form["username"]
-    #     # passw = request.form["password"]
-        return redirect(url_for("home", usr = user))
+        session["user"] = user
+        # passw = request.form["password"]
+        # session["pass"] = passw
+        return redirect(url_for("home"))
     else:
         return render_template("login.html")
 
@@ -18,27 +20,51 @@ def templatesLogin():
 
 
 
-@app.route("/templates/signup.html/")
+@app.route("/templates/interests.html", methods = ["POST", "GET"])
+def interests():
+    if request.method == "POST":
+        # user = request.form["username"]
+        # session["user"] = user
+        # passw = request.form["password"]
+        # session["pass"] = passw
+        return redirect(url_for("home"))
+    else:
+        return render_template("interests.html")
+
+
+@app.route("/templates/signup.html/", methods = ["POST", "GET"])
 def signup():
-    return render_template("signup.html")
+    if request.method == "POST":
+        user = request.form["username"]
+        session["user"] = user
+        # passw = request.form["password"]
+        # session["pass"] = passw
+        return redirect(url_for("interests"))
+    else:
+        return render_template("signup.html")
 
 @app.route("/templates/templates/signup.html/")
 def templatesSignup():
     return redirect(url_for("signup"))
 
 
-@app.route("/templates/index.html/<usr>")
-def home(usr):
-    return render_template("index.html", username = usr)
+
+
+
+
+@app.route("/templates/index.html/")
+def home():
+    if "user" in session:
+        username = session["user"]
+        return render_template("index.html")
+    else:
+        return redirect(url_for("login"))
     # , interests = "one, two, three,...", bio = "hello, this is a test hello, this is a test hello, this is a test hello, this is a test hello, this is a test hello, this is a test"
 
 @app.route("/templates/templates/index.html/")
 def templatesHome():
-    return redirect(url_for("home", usr = user))
+    return redirect(url_for("home"))
 
-@app.route("/templates/index.html/")
-def templatesHome2():
-    return render_template("index.html", username = user)
 
 
 
@@ -63,9 +89,6 @@ def friends():
 def templatesFriends():
     return redirect(url_for("friends"))
 
-# @app.route("/chat/")
-# def chat():
-#     return render_template("chat.html")
 
 
 
@@ -78,13 +101,10 @@ def settings():
 def templatesUserSettings():
     return redirect(url_for("settings"))
 
-# @app.route("/profile:<name>/")
-# def chat():
-#     return render_template("index.html")
+
+
 
 
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-# print("hello world")
