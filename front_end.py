@@ -45,10 +45,6 @@ def interests():
         userInterests = request.form.getlist("interests")
         session["userIterests"] = userInterests
 
-        # user = request.form["username"]
-        # session["user"] = user
-        # passw = request.form["password"]
-        # session["pass"] = passw
         return redirect(url_for("home"))
     else:
         return render_template("interests.html")
