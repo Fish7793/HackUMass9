@@ -53,4 +53,8 @@ class User:
             t += "[{} : {}], ".format(k, v)
 
         return t
+    
+
+    def score(self, other):
+        return len(list(filter(lambda x: x in self.properties["interests"], other.properties["interests"])))
         
