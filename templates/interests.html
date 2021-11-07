@@ -30,10 +30,12 @@
                 <br>
                 <form action = "#" method = "post">
                     <div class="form-check">
-                        <p>Please enter your current age range:</p>
-
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Please enter your current age (bewteen 0 and 99):
+                                </label>
+                            <input type="number" id="age" name="age" min="0" max="99">
                         
-                        <div class="form-check">
+                        <!-- <div class="form-check">
                             <input class="form-check-input" type="radio" name="ageRange" id="child">
                             <label class="form-check-label" for="flexRadioDefault1">
                             under 18
@@ -62,54 +64,53 @@
                             <label class="form-check-label" for="flexRadioDefault1">
                               46+
                             </label>
-                        </div>
+                        </div> -->
                     </div>
 
 
-                    <br><br>
-
+                    <br>
 
                     <div class="form-check">
                         <p>Select Your Interests:</p>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="sports">
+                            <input class="form-check-input" type="checkbox" value="" name="sports" id="sports">
                             <label class="form-check-label" for="flexCheckDefault">
                             Sports
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="art">
+                            <input class="form-check-input" type="checkbox" value="" name="art" id="art">
                             <label class="form-check-label" for="flexCheckDefault">
                             Art
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="music">
+                            <input class="form-check-input" type="checkbox" value="" name="music" id="music">
                             <label class="form-check-label" for="flexCheckDefault">
                             Music
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="dance">
+                            <input class="form-check-input" type="checkbox" value="" name="dance" id="dance">
                             <label class="form-check-label" for="flexCheckDefault">
                             Dance
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="technology">
+                            <input class="form-check-input" type="checkbox" value="" name="technology" id="technology">
                             <label class="form-check-label" for="flexCheckDefault">
                             Technology
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="cooking">
+                            <input class="form-check-input" type="checkbox" value="" name="cooking" id="cooking">
                             <label class="form-check-label" for="flexCheckDefault">
                             Cooking
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="travel">
+                            <input class="form-check-input" type="checkbox" value="" name="travel" id="travel">
                             <label class="form-check-label" for="flexCheckDefault">
                             Travel
                             </label>
