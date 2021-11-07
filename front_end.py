@@ -29,6 +29,22 @@ def interests():
     if request.method == "POST":
         bio = request.form["biography"]
         session["bio"] = bio
+
+
+        snapchatUser = request.form["snapchatUsername"]
+        session["snapchatUser"] = snapchatUser
+
+        instaUser = request.form["instagramUsername"]
+        session["instaUser"] = instaUser
+
+
+        discordUser = request.form["discordUsername"]
+        session["discordUser"] = discordUser
+
+
+        userInterests = request.form.getlist("interests")
+        session["userIterests"] = userInterests
+
         # user = request.form["username"]
         # session["user"] = user
         # passw = request.form["password"]
