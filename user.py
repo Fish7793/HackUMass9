@@ -18,7 +18,7 @@ class User:
             self.properties[k] = v
         return self
 
-    def set_data_from_database(self, tuple):
+    def set_from_database(self, tuple):
         if (tuple == None):
             return None
         self.properties["user_name"] = tuple[0]
